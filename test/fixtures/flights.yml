@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  start_city: MyString
+  end_city: MyString
+  start_time: 2018-03-12 15:09:26
+  flight_duration: 1
+
+two:
+  start_city: MyString
+  end_city: MyString
+  start_time: 2018-03-12 15:09:26
+  flight_duration: 1

@@ -8,8 +8,8 @@
 
 Airport.delete_all
 Airport.create!([
-                    {name: "PDX"},
-                    {name: "YUL"},
-                    {name: "MDW"},
-                    {name: "SEA"}
+                    {airport_code: "PDX"},
+                    {airport_code: "YUL"},
+                    {airport_code: "MDW"},
+                    {airport_code: "SEA"}
                 ])
