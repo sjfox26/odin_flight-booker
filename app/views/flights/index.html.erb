@@ -5,7 +5,9 @@
 
     <%= select_tag(:to, options_for_select(@airports, @to_chosen), prompt: "To")%>
 
+    <%= select_tag(:date, options_for_select(@dates, @date_chosen), prompt: "Date")%>
 
+    <%= select_tag(:passengers, options_for_select(@passengers, @passengers_chosen), prompt: "Passengers")%>
 
 
     <div class="Submit">
