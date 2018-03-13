@@ -1,0 +1,16 @@
+<%= form_tag(flights_path, method: :get) do  %>
+    <h2> Search Flights </h2>
+
+    <%= select_tag(:from, options_for_select(@airports, @from_chosen), prompt: "From")%>
+
+    <%= select_tag(:to, options_for_select(@airports, @to_chosen), prompt: "To")%>
+
+
+
+
+    <div class="Submit">
+      <%= submit_tag("Find Flights") %>
+    </div>
+
+<% end %>
+
