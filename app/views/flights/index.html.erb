@@ -8,7 +8,7 @@
 
     <%= select_tag(:date, options_for_select(@dates, @date_chosen), prompt: "Date")%>
 
-    <%= select_tag(:passengers, options_for_select(@passengers, @passengers_chosen), prompt: "Passengers")%>
+    <%= select_tag(:passenger_number, options_for_select(@passenger_options, @passengers_chosen), prompt: "Passengers")%>
 
 
     <div class="Submit">
@@ -17,7 +17,7 @@
 
     <% if @flights %>
         <%= form_tag flights_path, method: :get do %>
-            <%= hidden_field_tag :passengers, params[:passengers] %>
+            <%= hidden_field_tag :passengers, params[:passenger_number] %>
             <h2>Pick a Flight</h2>
             <table>
               <thead>

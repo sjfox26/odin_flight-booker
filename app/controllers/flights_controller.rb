@@ -10,12 +10,12 @@ class FlightsController < ApplicationController
     #get rid of duplicate dates
     @dates.uniq!
     #make array of passenger number for select_tag
-    @passengers = [1,2,3,4]
+    @passenger_options = [1,2,3,4]
     #variables to hold info passed in from params, the first argument of a select_tag
     @from_chosen = params[:from]
     @to_chosen = params[:to]
     @date_chosen = params[:date]
-    @passengers_chosen= params[:passengers]
+    @passengers_chosen = params[:passenger_number]
 
     @flights = Flight.search(params).order(:start_time)
   end
