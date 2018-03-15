@@ -1,54 +1,56 @@
-<%= form_tag(flights_path, method: :get) do  %>
+<%= form_tag(flights_path, method: :get) do %>
     <%= hidden_field_tag :search_clicked %>
     <h2> Search Flights </h2>
 
-    <%= select_tag(:from, options_for_select(@airports, @from_chosen), prompt: "From")%>
+    <%= select_tag(:from, options_for_select(@airports, @from_chosen), prompt: "From") %>
 
-    <%= select_tag(:to, options_for_select(@airports, @to_chosen), prompt: "To")%>
+    <%= select_tag(:to, options_for_select(@airports, @to_chosen), prompt: "To") %>
 
-    <%= select_tag(:date, options_for_select(@dates, @date_chosen), prompt: "Date")%>
+    <%= select_tag(:date, options_for_select(@dates, @date_chosen), prompt: "Date") %>
 
-    <%= select_tag(:passenger_number, options_for_select(@passenger_options, @passengers_chosen), prompt: "Passengers")%>
+    <%= select_tag(:passenger_number, options_for_select(@passenger_options, @passengers_chosen), prompt: "Passengers") %>
 
 
     <div class="Submit">
       <%= submit_tag("Find Flights") %>
     </div>
 
-    <% if @flights %>
-        <%= form_tag flights_path, method: :get do %>
-            <%= hidden_field_tag :passengers, params[:passenger_number] %>
-            <h2>Pick a Flight</h2>
-            <table>
-              <thead>
-                <tr>
-                  <th width = "40"></th>
-                  <th width = "50">Flight</th>
-                  <th width = "150">Date</th>
-                  <th width = "85">Time</th>
-                  <th width = "50">From</th>
-                  <th width = "50">To</th>
-                  <th width = "90">Duration</th>
-                </tr>
-              </thead>
-              <tbody>
-                <% @flights.each do |flight| %>
-                  <tr>
-                    <td><%= radio_button_tag :flight_id, flight.id %></td>
-                    <td><%= flight.id %></td>
-                    <td><%= flight.start_time.strftime("%a %m/%d/%y") %></td>
-                    <td><%= flight.start_time.strftime("%I:%M %p") %></td>
-                    <td><%= flight.from_airport.airport_code %></td>
-                    <td><%= flight.to_airport.airport_code %></td>
-                    <td><%= flight.flight_duration/60 %> hours</td>
-                  </tr>
-                <% end %>
-              </tbody>
-            </table>
-            <div class="submit">
-              <%= submit_tag("Select Flight")%>
-            </div>
-        <% end %>
+<% end %>
+
+
+<% if @flights %>
+    <%= form_tag(new_booking_path, method: :get) do %>
+        <%= hidden_field_tag :passenger_count, params[:passenger_number] %>
+        <h2>Pick a Flight</h2>
+        <table>
+          <thead>
+          <tr>
+            <th width="40"></th>
+            <th width="50">Flight</th>
+            <th width="150">Date</th>
+            <th width="85">Time</th>
+            <th width="50">From</th>
+            <th width="50">To</th>
+            <th width="90">Duration</th>
+          </tr>
+          </thead>
+          <tbody>
+          <% @flights.each do |flight| %>
+              <tr>
+                <td><%= radio_button_tag :flight_id, flight.id %></td>
+                <td><%= flight.id %></td>
+                <td><%= flight.start_time.strftime("%a %m/%d/%y") %></td>
+                <td><%= flight.start_time.strftime("%I:%M %p") %></td>
+                <td><%= flight.from_airport.airport_code %></td>
+                <td><%= flight.to_airport.airport_code %></td>
+                <td><%= flight.flight_duration/60 %> hours</td>
+              </tr>
+          <% end %>
+          </tbody>
+        </table>
+        <div class="submit">
+          <%= submit_tag("Select Flight") %>
+        </div>
     <% end %>
 
 <% end %>
