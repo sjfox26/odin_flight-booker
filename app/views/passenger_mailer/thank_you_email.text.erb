@@ -1,12 +1,12 @@
-Hello,
+Hello, <%= @customer.name %>
 
 You have successfully booked a flight!
 
 Below is your flight information:
 
 Flight #: <%= @booking.flight_id %>
-From: <%= @booking.flight.from_airport.name %>
-To: <%= @booking.flight.to_airport.name %>
+From: <%= @booking.flight.from_airport.airport_code %>
+To: <%= @booking.flight.to_airport.airport_code %>
 Date: <%= @booking.flight.start_time.strftime("%a %b %d, %Y") %>
 Time: <%= @booking.flight.start_time.strftime("%I:%M %p") %>
 
