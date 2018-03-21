@@ -1,6 +1,6 @@
 <%= form_for(@booking) do |f| %>
-    <%= f.hidden_field(:flight_id, value: params[:flight_id]) %>
-    <%= hidden_field_tag(:flight_id, params[:flight_id]) %>
+    <%= f.hidden_field(:flight_id, value: params[:flight_id]) %> <%# sends flight id along to booking with passenger model?, so passenger can have "flights" %>
+    <%= hidden_field_tag(:flight_id, params[:flight_id]) %> <%# sends flight_id param along for use in the controller? %>
     <h2> Book Flight
       <span> Enter Passenger Info </span>
     </h2>
