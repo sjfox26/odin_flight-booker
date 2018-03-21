@@ -10,6 +10,7 @@ class BookingsController < ApplicationController
 
     if @booking.save
       flash[:success] = "Your flight has been booked!  Enjoy your travels!"
+      PassengerMailer.thank_you_email(@booking).deliver
       redirect_to @booking
     else
       flash[:error] = "You must enter all information for all passengers."
