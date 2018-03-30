@@ -1,24 +1,42 @@
-<%= form_tag(flights_path, method: :get) do %>
-    <%= hidden_field_tag :search_clicked %>
+<div class="row search">
+
+  <div class="col-sm-4 col-sm-offset-4 well">
     <h2> Search Flights </h2>
 
-    <%= select_tag(:from, options_for_select(@airports, @from_chosen), prompt: "From") %>
+    <%= form_tag(flights_path, method: :get) do %>
+        <%= hidden_field_tag :search_clicked %>
 
-    <%= select_tag(:to, options_for_select(@airports, @to_chosen), prompt: "To") %>
+        <div class="form-group col-md-6">
+          <%= label_tag(:departure_airport_id, "Departing:") %>
+          <%= select_tag(:from, options_for_select(@airports, @from_chosen)) %>
+        </div>
 
-    <%= select_tag(:date, options_for_select(@dates, @date_chosen), prompt: "Date") %>
+        <div class="form-group col-md-6">
+          <%= label_tag(:departure_airport_id, "Destination:") %>
+          <%= select_tag(:to, options_for_select(@airports, @to_chosen)) %>
+        </div>
 
-    <%= select_tag(:passenger_number, options_for_select(@passenger_options, @passengers_chosen), prompt: "Passengers") %>
+        <div class="form-group col-md-6">
+          <%= label_tag(:departure_airport_id, "Date:") %>
+          <%= select_tag(:date, options_for_select(@dates, @date_chosen)) %>
+        </div>
+
+        <div class="form-group col-md-6">
+          <%= label_tag(:departure_airport_id, "Passengers:") %>
+          <%= select_tag(:passenger_number, options_for_select(@passenger_options, @passengers_chosen)) %>
+        </div>
 
 
-    <div class="Submit">
-      <%= submit_tag("Find Flights") %>
-    </div>
+        <div class="Submit">
+          <%= submit_tag("Find Flights") %>
+        </div>
 
-<% end %>
+    <% end %>
 
+  </div>
+</div>
 
-<% if @flights %>
+<% unless @flights.empty? %>
     <%= form_tag(new_booking_path, method: :get) do %>
         <%= hidden_field_tag :passenger_count, params[:passenger_number] %>
         <h2>Pick a Flight</h2>
