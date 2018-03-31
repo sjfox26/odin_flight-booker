@@ -13,7 +13,8 @@ class BookingsController < ApplicationController
       PassengerMailer.thank_you_email(@booking).deliver
       redirect_to @booking
     else
-      flash[:error] = "You must enter all information for all passengers."
+      @flight = Flight.find(params[:flight_id])
+      flash[:danger] = "You must enter all information for all passengers."
       render :new
     end
   end
