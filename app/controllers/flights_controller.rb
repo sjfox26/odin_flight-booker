@@ -16,6 +16,7 @@ class FlightsController < ApplicationController
     @to_chosen = params[:to]
     @date_chosen = params[:date]
     @passengers_chosen = params[:passenger_number]
+    @montreal = ["YUL", 21]
 
     @flights = Flight.search(params).order(:start_time)
   end

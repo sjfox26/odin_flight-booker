@@ -1,18 +1,24 @@
-<form>
-  <h2>Flight Confirmation:</h2>
-  <p>
-    <strong>Flight #:</strong> <%= @booking.flight_id %><br/>
-    <strong>From:</strong> <%= @booking.flight.from_airport.airport_code %><br/>
-    <strong>To:</strong> <%= @booking.flight.to_airport.airport_code %><br/>
-    <strong>Date:</strong> <%= @booking.flight.start_time.strftime("%a %b %d, %Y") %><br/>
-    <strong>Time:</strong> <%= @booking.flight.start_time.strftime("%I:%M %p") %>
-  </p>
-  <hr/>
-  <% @booking.passengers.each_with_index do |p, i| %>
+<div class="row">
+  <div class="col-sm-4 col-sm-offset-4 well">
+
+    <form>
+      <h2>Flight Confirmation:</h2>
       <p>
-        <strong>Passenger <%= i + 1 %>:</strong><br/>
-        <strong>Name:</strong> <%= p.name %><br/>
-        <strong>Email:</strong> <%= p.email %><br/>
+        <strong>Flight #:</strong> <%= @booking.flight_id %><br/>
+        <strong>From:</strong> <%= @booking.flight.from_airport.airport_code %><br/>
+        <strong>To:</strong> <%= @booking.flight.to_airport.airport_code %><br/>
+        <strong>Date:</strong> <%= @booking.flight.start_time.strftime("%a %b %d, %Y") %><br/>
+        <strong>Time:</strong> <%= @booking.flight.start_time.strftime("%I:%M %p") %>
       </p>
-  <% end %>
-</form>
+      <hr/>
+      <% @booking.passengers.each_with_index do |p, i| %>
+          <p>
+            <strong>Passenger <%= i + 1 %>:</strong><br/><br/>
+            <strong>Name:</strong> <%= p.name %><br/>
+            <strong>Email:</strong> <%= p.email %><br/>
+          </p>
+      <% end %>
+    </form>
+
+  </div>
+</div>

@@ -1,29 +1,35 @@
-<%= form_for(@booking) do |f| %>
-    <%= f.hidden_field(:flight_id, value: params[:flight_id]) %> <%# sends flight id along to booking with passenger model?, so passenger can have "flights" %>
-    <%= hidden_field_tag(:flight_id, params[:flight_id]) %> <%# sends flight_id param along for use in the controller? %>
-    <h2> Book Flight
-      <span> Enter Passenger Info </span>
-    </h2>
-    <p>
-      <strong> Flight #: </strong><%= @flight.id %><br/>
-      <strong> From: </strong><%= @flight.from_airport.airport_code %><br/>
-      <strong> To: </strong><%= @flight.to_airport.airport_code %><br/>
-      <strong> Date: </strong><%= @flight.start_time.strftime("%a %b %d, %Y") %><br/>
-      <strong> Time: </strong><%= @flight.start_time.strftime("%I:%M %p") %>
-    </p>
-    <hr/>
-    <% p_count = 1 %>
-    <%= f.fields_for :passengers do |p| %>
-        <strong> Passenger <%= p_count %>:</strong><br/>
-        <%= p.label :name, "Name:" %>
-        <%= p.text_field :name %>
+<div class="row new-booking">
+  <div class="col-sm-4 col-sm-offset-4 well">
 
-        <%= p.label :email, "Email:" %>
-        <%= p.email_field :email %>
-        <% p_count += 1 %>
-        <br/><br/>
+    <%= form_for(@booking) do |f| %>
+        <%= f.hidden_field(:flight_id, value: params[:flight_id]) %> <%# sends flight id along to booking with passenger model?, so passenger can have "flights" %>
+        <%= hidden_field_tag(:flight_id, params[:flight_id]) %> <%# sends flight_id param along for use in the controller? %>
+
+        <h2 class="center">Please enter passenger information for:</h2>
+
+        <p>
+          <strong> Flight #: </strong><%= @flight.id %><br/>
+          <strong> From: </strong><%= @flight.from_airport.airport_code %><br/>
+          <strong> To: </strong><%= @flight.to_airport.airport_code %><br/>
+          <strong> Date: </strong><%= @flight.start_time.strftime("%a %b %d, %Y") %><br/>
+          <strong> Time: </strong><%= @flight.start_time.strftime("%I:%M %p") %>
+        </p>
+        <hr/>
+        <% p_count = 1 %>
+        <%= f.fields_for :passengers do |p| %>
+            <strong> Passenger <%= p_count %>:</strong><br/><br/>
+            <%= p.label :name, "Name:" %>
+            <%= p.text_field :name %>
+
+            <%= p.label :email, "Email:" %>
+            <%= p.email_field :email %>
+            <% p_count += 1 %>
+            <br/><br/>
+        <% end %>
+
+        <%= submit_tag("Book Flight", class: "btn btn-primary col-md-12") %>
+
     <% end %>
-    <div class="submit">
-      <%= f.submit "Book Flight" %>
-    </div>
-<% end %>
+
+  </div>
+</div>
