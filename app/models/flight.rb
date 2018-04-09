@@ -1,6 +1,6 @@
 class Flight < ApplicationRecord
-  belongs_to :from_airport, foreign_key: "start_city_id", class_name: "Airport" #could this be just start_city ??
-  belongs_to :to_airport, foreign_key: "end_city_id", class_name: "Airport" #could this be just end_city ??
+  belongs_to :from_airport, foreign_key: "start_city_id", class_name: "Airport"
+  belongs_to :to_airport, foreign_key: "end_city_id", class_name: "Airport"
   has_many :bookings
 
   def self.search(params)

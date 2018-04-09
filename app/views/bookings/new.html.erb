@@ -18,11 +18,12 @@
         <% p_count = 1 %>
         <%= f.fields_for :passengers do |p| %>
             <strong> Passenger <%= p_count %>:</strong><br/><br/>
+
             <%= p.label :name, "Name:" %>
-            <%= p.text_field :name %>
+            <%= p.text_field :name, class: 'form-control' %><br/>
 
             <%= p.label :email, "Email:" %>
-            <%= p.email_field :email %>
+            <%= p.email_field :email, class: 'form-control' %>
             <% p_count += 1 %>
             <br/><br/>
         <% end %>
