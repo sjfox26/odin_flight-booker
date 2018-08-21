@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 20180314185654) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "airports", force: :cascade do |t|
     t.string "airport_code"
     t.datetime "created_at", null: false
@@ -19,7 +22,7 @@ ActiveRecord::Schema.define(version: 20180314185654) do
   end
 
   create_table "bookings", force: :cascade do |t|
-    t.integer "flight_id"
+    t.bigint "flight_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["flight_id"], name: "index_bookings_on_flight_id"
@@ -30,8 +33,8 @@ ActiveRecord::Schema.define(version: 20180314185654) do
     t.integer "flight_duration"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "start_city_id"
-    t.integer "end_city_id"
+    t.bigint "start_city_id"
+    t.bigint "end_city_id"
     t.index ["end_city_id"], name: "index_flights_on_end_city_id"
     t.index ["start_city_id"], name: "index_flights_on_start_city_id"
   end
@@ -44,12 +47,15 @@ ActiveRecord::Schema.define(version: 20180314185654) do
   end
 
   create_table "tickets", force: :cascade do |t|
-    t.integer "passenger_id"
-    t.integer "booking_id"
+    t.bigint "passenger_id"
+    t.bigint "booking_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["booking_id"], name: "index_tickets_on_booking_id"
     t.index ["passenger_id"], name: "index_tickets_on_passenger_id"
   end
 
+  add_foreign_key "bookings", "flights"
+  add_foreign_key "tickets", "bookings"
+  add_foreign_key "tickets", "passengers"
 end
