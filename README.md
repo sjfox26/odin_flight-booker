@@ -1,3 +1,5 @@
+# odin_flight-booker
+
 This project was a one-way flight booker, created in March of 2018. It allowed me to practice my data architecture skills and have some more fun with Bootstrap.
 
 ![screen shot 2018-08-21 at 2 34 16 pm](https://user-images.githubusercontent.com/23299983/44424982-48136f00-a550-11e8-8401-d29631d6b0a9.png)
